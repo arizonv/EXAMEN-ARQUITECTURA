@@ -1,0 +1,40 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<body class="body">
+
+  <!-- {% comment %} <ul>
+      {{persona}}
+  </ul> {% endcomment %} -->
+  <br><br><br>
+  <div class="container">
+      <table class="table table-bordered table-striped">
+          <h2>PRODUCTOS</h2>
+          <thead class="text-center">
+          <th>id</th>
+          <th>Nombre</th>
+          <th>descripcion</th>
+          <th>precio</th>
+          <th>pyme</th>
+          <th>categoria</th>
+          </thead>
+          <tbody> 
+              {% for p in productos %}       
+              <tr class="text-center" >
+                <td>00{{p.id}}</td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.descripcion}}</td>
+                <td>${{p.precio}}</td>
+                <td>{{p.pyme}}</td> 
+                <td>{{p.categoria}}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  <br>
+  <hr>
+  <br>
+</body>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base/index.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<body>
+    <div class="container">
+        <form method="post" id="formulario" enctype="multipart/form-data" action="/agregar/">
+            {% csrf_token %}
+            
+            <div class="form-group">
+              <label  for="nombre" id="label-nombre">Nombre (*)</label>
+              <div>
+                <input type="text"  id="nombre" name="nombre" placeholder="nombre" required>
+              </div>
+            </div>
+            <br>
+        <button type="submit" class="btn btn-success" id="enviar">Guardar</button>
+        <a class="btn btn-secondary" href="/home" role="button">Volver</a>
+      </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<body class="body">
+
+  <!-- {% comment %} <ul>
+      {{persona}}
+  </ul> {% endcomment %} -->
+  <br><br><br>
+
+  <div class="container">
+      <table class="table table-bordered table-striped">
+          <h2>PRODUCTOS</h2>
+          <thead class="text-center">
+          <th>id</th>
+          <th>Nombre</th>
+          <th>descripcion</th>
+          <th>precio</th>
+          <th>pyme</th>
+          <th>categoria</th>
+          </thead>
+          <tbody> 
+              {% for p in productos %}       
+              <tr class="text-center" >
+                <td>00{{p.id}}</td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.descripcion}}</td>
+                <td>${{p.precio}}</td>
+                <td>{{p.pyme}}</td> 
+                <td>{{p.categoria}}</td>
+                  <td>
+                    <a href="{% url 'modificar' p.id %}"   class= "btn btn-primary btn-sm btn-modificar">modificar</a>
+                      <a href="{% url 'eliminarProducto' p.id %}"  class= "btn btn-danger btn-sm btn-eliminar">eliminar</a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div class="container">
+    <table class="table table-bordered table-striped">
+        <h2>PYMES</h2>
+        <thead class="text-center">
+        <th>Tipo</th>
+        <th>Nombre</th>
+        </thead>
+        <tbody> 
+            {% for p in pymes %}       
+            <tr class="text-center" >
+              <td>{{p.id}}</td>
+              <td>{{p.nombre}}</td>
+                <td>
+                  <a href="{% url 'modificarPyme' p.id %}"   class= "btn btn-primary btn-sm btn-modificar">modificar</a>
+                  <a href="{% url 'eliminarPyme' p.id %}"  class= "btn btn-danger btn-sm btn-eliminar">eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+
+{% endblock %}

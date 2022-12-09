@@ -1,0 +1,59 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<body class="body">
+
+  <!-- {% comment %} <ul>
+      {{persona}}
+  </ul> {% endcomment %} -->
+  <br><br><br>
+  <div class="container">
+    <table class="table table-bordered table-striped">
+      <h2>Usuarios</h2>
+      <thead class="text-center">
+        <th>id</th>
+        <th>Nombre</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr class="text-center">
+          <td>00{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>
+            <a class="dropdown-item" href="#" onclick="user_delete()">Eliminar usuario</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <br>
+  {% if user.is_authenticated %}
+    <script>
+        function user_delete() {
+          cont = 0;
+          for (var i = 1; i <= 2; i++) {
+
+            var identificador = prompt("confirmacion, escriba ok para continuar");
+
+            if (identificador != 'ok') {
+              alert('error');
+            }
+            if (identificador == 'ok' ) {
+              alert('hasta luego');
+              break;
+            } else {
+              cont++;
+              if (cont == 2) {
+                alert('Lo siento, has agotado el número de intentos');
+                document.location.href ="{% url 'delete' user.id %}";
+              }
+            }
+          }
+        }
+    </script>
+{% endif %}
+</body>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<body class="body">
+    <div class="container">
+        <br>
+          <form method="post" id="formulario" 
+          enctype="multipart/form-data" action="/modificar/{{ dev.id }}/">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label  for="nombre" id="label-nombre">Nombre (*)</label>
+              <div>
+                <input type="text"  id="nombre" name="nombre" placeholder="nombre" value="{{ dev.nombre }}"  required>
+              </div>
+            </div>
+
+            <div class="row pb-3">
+              <div class="col-lg-2">
+                <div class="form-group">
+                  <label class="form-control-sm" for="precio" id="label-precio">Precio (*)</label>
+                  <div>
+                    <input type="number" min="1" pattern="^[0-9]+" max="999999999" class="form-control form-control-sm" id="precio" name="precio" placeholder="(Ingrese precio)"  value="{{ dev.precio }}" required>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-9"></div>
+            </div>
+
+            
+            <div class="row pb-3">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-sm" for="descripcion" id="label-descripcion">Descripción (*)</label>
+                  <div>
+                    <textarea class="form-control-sm" name="descripcion" id="descripcion" cols="55" rows="3" placeholder="(Ingrese descripción)" 
+                    value="{{ dev.descripcion }}" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-9"></div>
+            </div>
+
+            <div class="row pb-3">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-sm" for="pyme" id="label-pyme">PYME (*)</label>
+                  <div>
+                    <select class="form-control-sm" class="form-select form-select-sm" id="pyme" name="pyme" aria-label="Default select example" required>
+                      <option id="" value="" name="">(Seleccione PYME)</option>
+                      {% for py in pymes %}
+                        <option id="{{ py.id }}" value="{{ py.id }}" name="{{ py.id }}">{{ py.nombre }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-10"></div>
+            </div>
+    
+
+            <div class="row pb-3">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-sm" for="categoria" id="label-categoria">categorias (*)</label>
+                  <div>
+                    <select class="form-control-sm" class="form-select form-select-sm" id="categoria" name="categoria" aria-label="Default select example" >
+                      <option id="" value="" name="">(Seleccione categoria)</option>
+                      {% for c in categorias %}
+                        <option id="{{ c.id }}" value="{{ c.id }}" name="{{ c.id }}">{{ c.nombre }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-10"></div>
+            </div>
+    
+
+
+            <br>
+        <button type="submit" class="btn btn-success" id="enviar">Guardar</button>
+        <a class="btn btn-secondary" href="/home" role="button">Volver</a>
+      </form>
+    </div>
+</body>
+
+{% endblock %}

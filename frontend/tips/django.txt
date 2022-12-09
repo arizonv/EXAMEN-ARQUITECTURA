@@ -1,0 +1,21 @@
+django-admin startproject
+
+python manage.py startapp
+
+python manage.py runserver
+
+manage.py makemigrations
+manage.py migrate
+
+
+&nbsp;
+
+
+agregar frontend/DJANGO/app/templates/agregar.html
+urls    frontend/DJANGO/arizona/urls.py
+view    frontend/DJANGO/app/views.py
+
+
+    
+
+
