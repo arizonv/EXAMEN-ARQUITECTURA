@@ -78,7 +78,7 @@ def logoutUser(request):
 	logout(request)
 	return redirect('loginClient')
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def Get_List(request):
 	urlProductos="http://127.0.0.1:8000/api/productos/"
 	urlPymes = "http://127.0.0.1:8000/api/pymes/"
@@ -90,19 +90,19 @@ def Get_List(request):
 	}
 	return render(request, 'home.html', datos)
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def eliminarProducto(request, id):
     url = f'http://127.0.0.1:8000/api/producto/{id}/'
     response = requests.delete(url)
     return redirect(to="home")
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def eliminarPyme(request, id):
     url = f'http://127.0.0.1:8000/api/pyme/{id}/'
     response = requests.delete(url)
     return redirect(to="home")
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def agregar(request):
 	url = 'http://127.0.0.1:8000/api/producto/'
 	
@@ -123,7 +123,7 @@ def agregar(request):
 
 	return render(request, "controllers/productos/agregar.html",datos)
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def modificar(request,id):   
 
 	url_pymes= 'http://127.0.0.1:8000/api/pymes/'
@@ -148,7 +148,7 @@ def modificar(request,id):
 		return redirect(to='home')
 	return render(request, "controllers/productos/modificar.html", developer )
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def modificarPyme(request,id):   
 	url_pymes= f'http://127.0.0.1:8000/api/pymeUp/{id}/'
 	responsePymes = requests.get(url_pymes).json()
@@ -184,7 +184,7 @@ def index(request):
 	return render(request, 'index.html')
 
 
-@login_required(login_url='logAdmin')
+@login_required(login_url='Admin')
 def user_delete(request, id):
     user = User.objects.get(id=id)
     if request.user == user:
